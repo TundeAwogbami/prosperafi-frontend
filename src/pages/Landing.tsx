@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Wallet, TrendingUp, Shield, Zap, BarChart3, Coins } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -47,12 +48,6 @@ const stats = [
 const Landing = () => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Background Effects */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] animate-pulse-slow" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px] animate-pulse-slow" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px]" />
-      </div>
 
       <Header />
 
@@ -72,7 +67,7 @@ const Landing = () => {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               <span className="text-foreground">Trade, Stake &</span>
               <br />
-              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+              <span className="text-primary">
                 Grow Your Crypto
               </span>
             </h1>
@@ -117,41 +112,74 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="relative py-24 px-4">
+           {/* Features Section */}
+      <section className="relative py-28 px-4 bg-secondary/30">
         <div className="container mx-auto">
+
+          {/* Section header */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            {/* Eyebrow label — small text above the heading */}
+            <span className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-widest uppercase rounded-full bg-primary/10 text-primary border border-primary/20">
+              Platform Features
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-5 text-foreground tracking-tight">
               Everything You Need
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Powerful features designed for both beginners and experienced DeFi users
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              Powerful tools designed for both beginners and experienced DeFi users
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/30 hover:border-primary/30 hover:bg-card/50 transition-all duration-300"
-              >
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-                  <feature.icon className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-foreground">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-              </motion.div>
-            ))}
+          {/* Feature cards grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: index * 0.08 }}
+                  className={cn(
+                    "group relative p-7 rounded-2xl bg-white border border-border/60",
+                    "shadow-[0_2px_12px_rgba(0,0,0,0.04)]",
+                    "hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]",
+                    "hover:border-primary/30 hover:-translate-y-0.5",
+                    "transition-all duration-300 cursor-default"
+                  )}
+                >
+                  {/* Top row: icon + arrow-on-hover */}
+                  <div className="flex items-start justify-between mb-6">
+                    {/* Icon box — solid background, crisp */}
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors duration-300">
+                      <Icon className="h-5 w-5 text-primary" strokeWidth={1.8} />
+                    </div>
+                    {/* Arrow that slides in on hover — subtle interaction cue */}
+                    <span className="text-muted-foreground/0 group-hover:text-primary group-hover:translate-x-0 -translate-x-1 transition-all duration-300 text-lg font-light select-none">
+                      →
+                    </span>
+                  </div>
+
+                  {/* Text content */}
+                  <h3 className="text-base font-semibold mb-2 text-foreground tracking-tight">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {feature.description}
+                  </p>
+
+                  {/* Bottom accent line — grows on hover */}
+                  <div className="absolute bottom-0 left-7 right-7 h-[2px] rounded-full bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -164,7 +192,7 @@ const Landing = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center p-12 rounded-3xl bg-gradient-to-br from-primary/10 via-card/50 to-accent/10 border border-border/30 backdrop-blur-xl"
+            className="max-w-4xl mx-auto text-center p-12 rounded-3xl bg-card border border-border"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
               Ready to Start Your DeFi Journey?

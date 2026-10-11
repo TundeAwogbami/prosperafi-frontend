@@ -4,7 +4,7 @@ The platform provides intuitive wallet connectivity, portfolio management, token
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 - Multi-chain support (Ethereum mainnet, Polygon, BNB Chain)
 - Portfolio and dashboard views with charts and token icons
@@ -16,7 +16,7 @@ The platform provides intuitive wallet connectivity, portfolio management, token
 
 ---
 
-## 🗂 Project Structure (high level)
+## Project Structure
 
 ```
 public/                     # Static assets
