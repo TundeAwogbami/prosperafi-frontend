@@ -40,8 +40,7 @@ package.json
 
 ```sh
 # 1. Clone the repository
-git clone https://bitbucket.org/monorepo03/prosperafi-frontend.git
-
+git clone https://github.com/TundeAwogbami/prosperafi-frontend.git
 cd prosperafi-frontend
 
 # 2. Install dependencies (root)
