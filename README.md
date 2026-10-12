@@ -29,7 +29,7 @@ src/
 	data/                     # mock data and fixtures
 	integrations/             # supabase client and types
 	App.tsx, main.tsx, styles  # app entry
-supabase/                    # local supabase config / project (not the runtime DB secrets)
+supabase/                    # local supabase config / project
 vite.config.ts
 package.json
 ```
